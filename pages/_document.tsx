@@ -1,20 +1,25 @@
-import { createGetInitialProps } from '@mantine/next';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { createGetInitialProps } from "@mantine/next";
+import Document, {
+  DocumentProps,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from "next/document";
 
-const getInitialProps = createGetInitialProps();
+export const getInitialProps = createGetInitialProps();
 
-export default class _Document extends Document {
-  static getInitialProps = getInitialProps;
-
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+export default function Document_({ locale, __NEXT_DATA__ }: DocumentProps) {
+  return (
+    <Html
+      dir={locale?.includes("ar") ? "rtl" : "ltr"}
+      lang={locale || __NEXT_DATA__.defaultLocale}
+    >
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
 }

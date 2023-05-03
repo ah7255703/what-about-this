@@ -1,21 +1,14 @@
 import { Button, Group } from "@mantine/core";
 import MainLayout from "layouts/main";
-import { GetServerSidePropsContext, type NextPage } from "next";
+import { GetStaticPropsContext, type NextPage } from "next";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { type Database } from "db";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const supa = createServerSupabaseClient(ctx);
-  console.log(await supa.auth.getSession().then((d) => d.data));
-
-  return {
-    props: {},
-  };
-}
+import { useTranslations } from "next-intl";
 
 const Home: NextPage = () => {
   const client = useSupabaseClient<Database>();
+  const t = useTranslations("login");
+
   return (
     <MainLayout>
       <Group>
@@ -27,7 +20,7 @@ const Home: NextPage = () => {
             });
           }}
         >
-          login
+          {t("loginbtn")}
         </Button>
         <Button
           onClick={() => {
@@ -43,5 +36,11 @@ const Home: NextPage = () => {
     </MainLayout>
   );
 };
-
+export async function getStaticProps(context: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`locales/${context.locale}.json`)).default,
+    },
+  };
+}
 export default Home;
