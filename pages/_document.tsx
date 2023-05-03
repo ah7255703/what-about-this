@@ -1,4 +1,3 @@
-import { createGetInitialProps } from "@mantine/next";
 import Document, {
   DocumentProps,
   Head,
@@ -7,7 +6,6 @@ import Document, {
   NextScript,
 } from "next/document";
 
-export const getInitialProps = createGetInitialProps();
 
 export default function Document_({ locale, __NEXT_DATA__ }: DocumentProps) {
   return (

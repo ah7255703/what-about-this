@@ -1,4 +1,3 @@
-import { Button, Group } from "@mantine/core";
 import MainLayout from "layouts/main";
 import { GetStaticPropsContext, type NextPage } from "next";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -11,28 +10,8 @@ const Home: NextPage = () => {
 
   return (
     <MainLayout>
-      <Group>
-        <Button
-          onClick={() => {
-            client.auth.signInWithPassword({
-              email: "ah7255703@gmail.com",
-              password: "123465798",
-            });
-          }}
-        >
-          {t("loginbtn")}
-        </Button>
-        <Button
-          onClick={() => {
-            client.auth.signUp({
-              email: "ah7255703@gmail.com",
-              password: "123465798",
-            });
-          }}
-        >
-          signup
-        </Button>
-      </Group>
+      <div>{t("loginbtn")}</div>
+      <div dir="auto">Login</div>
     </MainLayout>
   );
 };

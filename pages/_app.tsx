@@ -1,37 +1,33 @@
 import { AppType } from "next/app";
-import { MantineProvider } from "@mantine/core";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 import { type Database } from "db";
-import { NextIntlProvider, type AbstractIntlMessages } from "next-intl";
-import { Notifications } from "@mantine/notifications";
-import { ModalsProvider } from "@mantine/modals";
+import {
+  NextIntlProvider,
+  type AbstractIntlMessages,
+} from "next-intl";
+import "../styles/globals.css";
+import { useRouter } from "next/router";
+import { cairoFont, notoFont } from "utils/fonts";
 
 
 const MyApp: AppType<{
   messages: AbstractIntlMessages;
 }> = ({ Component, pageProps: { ...pageProps } }) => {
   const [supaClient] = useState(() => createBrowserSupabaseClient<Database>());
-  console.log(pageProps.messages);
-
+  const { locale } = useRouter();
+  
   return (
+    <>
     <SessionContextProvider supabaseClient={supaClient}>
       <NextIntlProvider messages={pageProps.messages}>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{
-            colorScheme: "light",
-          }}
-        >
-          <Notifications />
-          <ModalsProvider>
-            <Component {...pageProps} />
-          </ModalsProvider>
-        </MantineProvider>
+        <div className={`${cairoFont.variable} ${notoFont.variable} ltr:font-noto rtl:font-cairo`}>
+          <Component {...pageProps} />
+        </div>
       </NextIntlProvider>
     </SessionContextProvider>
+    </>
   );
 };
 export default MyApp;

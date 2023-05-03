@@ -1,7 +1,6 @@
 import React from "react";
 import { type ISlideConfig, SlideParallaxType } from "react-page-slides";
 import dynamic from "next/dynamic";
-import Hero from "components/parts/welcome/Hero";
 
 const PageSlides = dynamic(
   () => import("react-page-slides").then((v) => v.PageSlides),
@@ -9,7 +8,7 @@ const PageSlides = dynamic(
 );
 const slides: ISlideConfig[] = [
   {
-    content: <Hero />,
+    content: <></>,
     style: {},
   },
   {
