@@ -17,6 +17,7 @@ const MyApp: AppType<{
 }> = ({ Component, pageProps: { ...pageProps } }) => {
   const [supaClient] = useState(() => createBrowserSupabaseClient<Database>());
   const { locale } = useRouter();
+  console.log(locale);
   
   return (
     <>

@@ -10,12 +10,13 @@ const Home: NextPage = () => {
 
   return (
     <MainLayout>
-      <div>{t("loginbtn")}</div>
-      <div dir="auto">Login</div>
+        main content and stuff
     </MainLayout>
   );
 };
 export async function getStaticProps(context: GetStaticPropsContext) {
+  console.log(context.locale);
+  
   return {
     props: {
       messages: (await import(`locales/${context.locale}.json`)).default,

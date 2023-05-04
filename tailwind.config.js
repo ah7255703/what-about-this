@@ -6,7 +6,11 @@ module.exports = {
     "./layouts/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      container:{
+        center:true
+      }
+    },
     fontFamily: {
       cairo: ["var(--font-cairo)", "sans-serif"],
       noto: ["var(--font-noto)", "sans-serif"],

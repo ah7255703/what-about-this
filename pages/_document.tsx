@@ -6,11 +6,10 @@ import Document, {
   NextScript,
 } from "next/document";
 
-
 export default function Document_({ locale, __NEXT_DATA__ }: DocumentProps) {
   return (
     <Html
-      dir={locale?.includes("ar") ? "rtl" : "ltr"}
+      dir={locale === "ar" ? "rtl" : "ltr"}
       lang={locale || __NEXT_DATA__.defaultLocale}
     >
       <Head />
