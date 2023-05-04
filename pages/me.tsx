@@ -1,12 +1,11 @@
+import React from "react";
 import WAvatar from "components/Avatar";
 import Button from "components/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "components/Popover";
 import MainLayout from "layouts/main";
-import React from "react";
 import { BiPencil } from "react-icons/bi";
-type Props = {};
 
-export default function Me({}: Props) {
+export default function Me() {
   return (
     <MainLayout>
       <div className="max-h-full w-full overflow-auto pb-10">
@@ -45,20 +44,36 @@ export default function Me({}: Props) {
           </div>
         </section>
         <section className="flex gap-3 sm:flex-row flex-col-reverse [&>*]:rounded-lg [&>*]:bg-white px-5 mt-10 items-start w-full container sm:max-w-screen-lg">
-          <main className="sm:flex-1 w-full">
-            fuckem 
-          </main>
+          <main className="sm:flex-1 w-full">fuckem</main>
           <aside className="w-full sm:max-w-xs p-4 pb-10">
             <h2 className="text-xl font-medium text-slate-600">About me</h2>
-            <p className="mt-1 mx-2 text-sm font-normal text-slate-500 leading-snug text-start" dir="auto">you should be proud bitch you should be proud bitch you should be proud bitch</p>
+            <p
+              className="mt-1 mx-2 text-sm font-normal text-slate-500 leading-snug text-start"
+              dir="auto"
+            >
+              you should be proud bitch you should be proud bitch you should be
+              proud bitch
+            </p>
             <div className="block h-px w-full bg-slate-200 my-4"></div>
             <div className="w-full flex flex-wrap items-start gap-2">
-            <h2 className="text-xl font-medium text-slate-600 w-full ">intersets</h2>
-                <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">football</div>
-                <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">reading</div>
-                <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">time saver</div>
-                <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">fucking</div>
-                <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">tooling</div>
+              <h2 className="text-xl font-medium text-slate-600 w-full ">
+                intersets
+              </h2>
+              <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">
+                football
+              </div>
+              <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">
+                reading
+              </div>
+              <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">
+                time saver
+              </div>
+              <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">
+                fucking
+              </div>
+              <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">
+                tooling
+              </div>
             </div>
           </aside>
         </section>

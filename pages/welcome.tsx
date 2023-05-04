@@ -273,7 +273,7 @@ const MainPage = () => {
   );
 };
 
-export default function Page({}) {
+export default function Page() {
   return (
     <div className="w-screen h-screen bg-slate-50">
       <header className="w-full h-[50px] shadow fixed top-0 left-0 bg-white z-50">

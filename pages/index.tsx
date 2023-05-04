@@ -1,3 +1,4 @@
+import React from "react";
 import MainLayout from "layouts/main";
 import { GetStaticPropsContext, type NextPage } from "next";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
