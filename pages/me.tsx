@@ -37,7 +37,7 @@ export default function Me() {
               </div>
             </div>
             <div className="mt-auto mb-2">
-              <Button intent={"primary"} className="">
+              <Button intent={"primary"}>
                 Follow
               </Button>
             </div>

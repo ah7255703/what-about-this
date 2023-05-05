@@ -6,9 +6,11 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "poststop": "rm -rf .next/"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
     "@radix-ui/react-alert-dialog": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.2",
     "@radix-ui/react-dialog": "^1.0.3",
@@ -31,7 +33,8 @@
     "react-icons": "^4.8.0",
     "react-page-slides": "^0.1.3",
     "tailwind-merge": "^1.12.0",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.3.2",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/eslint": "^8.21.3",
@@ -43,7 +46,7 @@
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",
     "eslint-plugin-react": "^7.32.2",
-    "supabase": "^1.52.3",
+    "supabase": "^1.55.0",
     "typescript": "^5.0.2"
   }
 }

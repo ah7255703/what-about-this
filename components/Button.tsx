@@ -5,7 +5,7 @@ import { filterObject } from "utils/filter-object";
 import cn from "utils/cn";
 
 const ButtonVariants = cva(
-  "leading-snug font-medium whitespace-nowrap h-fit w-fit active:scale-[0.98] active:bg-opacity-90 transition-all",
+  "leading-snug font-medium relative whitespace-nowrap h-fit w-fit active:scale-[0.98] active:bg-opacity-90 transition-all",
   {
     variants: {
       intent: {
@@ -29,19 +29,28 @@ const ButtonVariants = cva(
 
 type VType = VariantProps<typeof ButtonVariants>;
 
-type Props = PropsWithoutRef<ButtonHTMLAttributes<HTMLButtonElement>> & VType;
+type Props = PropsWithoutRef<ButtonHTMLAttributes<HTMLButtonElement>> &
+  VType & { loading?: boolean };
 
-const Button = forwardRef<HTMLButtonElement, Props>((props, _ref) => {
-  const Variant = filterObject(props, ["intent", "fluid", "size"]);
+const Button = forwardRef<HTMLButtonElement, Props>(
+  ({ className, loading, ...props }, _ref) => {
+    const Variant = filterObject(props, ["intent", "fluid", "size"]);
 
-  return (
-    <button
-      {...props}
-      role="button"
-      ref={_ref}
-      className={cn(ButtonVariants(Variant), props.className)}
-    />
-  );
-});
+    return (
+      <button
+        {...props}
+        role="button"
+        ref={_ref}
+        className={cn(
+          ButtonVariants(Variant),
+          className,
+          loading && [
+            "animate-pulse",
+          ]
+        )}
+      />
+    );
+  }
+);
 Button.displayName = "Button";
 export default Button;

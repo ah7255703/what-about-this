@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { type ISlideConfig, SlideParallaxType } from "react-page-slides";
 import dynamic from "next/dynamic";
 import Button from "components/Button";
@@ -7,12 +7,19 @@ import { FaBalanceScale } from "react-icons/fa";
 import { DiOpensource, DiGithub } from "react-icons/di";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "components/Tabs";
-
+import Input from "components/Input";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema, registerSchema } from "utils/schemas";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Database } from "db";
+import toast from "react-hot-toast";
 const PageSlides = dynamic(
   () => import("react-page-slides").then((v) => v.PageSlides),
   { ssr: false }
 );
-function Frature({
+
+function Feature({
   feture,
   icon,
   descri,
@@ -37,27 +44,27 @@ function Frature({
 function Hero() {
   return (
     <section>
-      <div className="container max-w-screen-md px-[100px]">
-        <div className="text-start mt-20">
-          <h1 className="sm:text-5xl text-2xl font-extrabold sm:leading-[1.4] text-slate-800">
+      <div className="container max-w-screen-md sm:px-[75px] px-10">
+        <div className="sm:text-start text-center mt-20">
+          <h1 className="sm:text-6xl text-3xl font-extrabold sm:leading-[1.4] text-slate-800">
             Get instant feedback on any question with 'What About This'
           </h1>
           <p className="mt-3 sm:text-xl text-lg font-medium text-slate-600">
             Create polls, share with friends, and get real-time results
           </p>
         </div>
-        <div className="flex items-start gap-3 mt-5">
-          <Frature
+        <div className="flex items-start gap-3 mt-10">
+          <Feature
             icon={<FaBalanceScale />}
             descri="Any time, no limits"
             feture="free forwever"
           />
-          <Frature
+          <Feature
             icon={<DiOpensource />}
             descri="Fork & Edit"
             feture="open source"
           />
-          <Frature
+          <Feature
             icon={<GiRocket />}
             descri="get instant realtime results"
             feture="Realtime"
@@ -77,6 +84,137 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function LoginForm() {
+  const { auth } = useSupabaseClient<Database>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { email: "", password: "" },
+    resolver: yupResolver(loginSchema),
+  });
+
+  return (
+    <>
+      <div className="">
+        <h2 className="text-3xl font-semibold text-slate-900 text-center">
+          Welcome again
+        </h2>
+        <p className="text-center my-1 text-sm font-light text-slate-500">
+          ready to continue the journey?
+        </p>
+      </div>
+      <form
+        onSubmit={handleSubmit(async ({ password, email }) => {
+          const { data, error } = await auth.signInWithPassword({
+            email: email,
+            password: password,
+          });
+          if (error) {
+            toast.error(error.message);
+          }
+          if (!error && data.user) {
+            toast.success("Logged in successfully");
+          }
+        })}
+        className="w-full"
+      >
+        <Input
+          label="Email"
+          required
+          aria-required
+          {...register("email")}
+          type="email"
+          error={errors.email?.message}
+        />
+        <Input
+          label="password"
+          required
+          aria-required
+          {...register("password")}
+          type="password"
+          error={errors.password?.message}
+        />
+        <Button intent="primary" fluid className="mt-2 mx-auto">
+          Login
+        </Button>
+      </form>
+    </>
+  );
+}
+function RegisterForm() {
+  const { auth } = useSupabaseClient<Database>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: { email: "", password: "", name: "" },
+    resolver: yupResolver(registerSchema),
+  });
+
+  return (
+    <>
+      <div className="">
+        <h2 className="text-3xl font-semibold text-slate-900 text-center">
+          Welcome
+        </h2>
+      </div>
+      <form
+        onSubmit={handleSubmit(async ({ email, password, name }) => {
+          const { data, error } = await auth.signUp({
+            email: email,
+            password: password,
+            options: {
+              data: {
+                name: name,
+              },
+            },
+          });
+          if (error) {
+            toast.error(`an error occured ${error.message}`);
+          }
+          if (data && !error) {
+            toast.success("Account Created Successfully");
+          }
+        })}
+        className="w-full"
+      >
+        <Input
+          label="Name"
+          error={errors.name?.message}
+          {...register("name")}
+          type="text"
+        />
+        <Input
+          label="Email"
+          error={errors.email?.message}
+          {...register("email")}
+          type="email"
+        />
+        <Input
+          label="password"
+          error={errors.password?.message}
+          {...register("password")}
+          type="password"
+        />
+        <Button
+          type="submit"
+          loading={isSubmitting}
+          disabled={isSubmitting}
+          intent="primary"
+          fluid
+          className="mt-2 mx-auto"
+        >
+          create account
+        </Button>
+      </form>
+    </>
   );
 }
 
@@ -230,17 +368,26 @@ function SignInSection() {
             </div>
           </div>
 
-          <Tabs defaultValue="login" className="w-full flex-col flex items-center">
+          <Tabs
+            defaultValue="login"
+            className="w-full flex-col flex items-center"
+          >
             <TabsList className="p-2 bg-transparent">
-              <TabsTrigger value="login" className="text-xl">Login</TabsTrigger>
-              <TabsTrigger value="register" className="text-xl">Register</TabsTrigger>
+              <TabsTrigger value="login" className="text-xl">
+                Login
+              </TabsTrigger>
+              <TabsTrigger value="register" className="text-xl">
+                Register
+              </TabsTrigger>
             </TabsList>
-            <TabsContent value="login">
-              Make changes to your account here.
-            </TabsContent>
-            <TabsContent value="register">
-              Change your password here.
-            </TabsContent>
+            <div className="p-3 max-w-full min-w-fit w-3/4">
+              <TabsContent value="login">
+                <LoginForm />
+              </TabsContent>
+              <TabsContent value="register">
+                <RegisterForm />
+              </TabsContent>
+            </div>
           </Tabs>
           <div></div>
         </div>
@@ -251,11 +398,11 @@ function SignInSection() {
 
 const slides: ISlideConfig[] = [
   {
-    content: <SignInSection />,
+    content: <Hero />,
     style: {},
   },
   {
-    content: <Hero />,
+    content: <SignInSection />,
     style: {},
   },
 ];
@@ -272,6 +419,20 @@ const MainPage = () => {
     />
   );
 };
+import { type GetServerSidePropsContext } from "next";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const { auth } = createServerSupabaseClient(ctx);
+  const session = await auth.getSession();
+  if (session) {
+    console.log(session.data.session?.user);
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export default function Page() {
   return (

@@ -11,7 +11,7 @@ import {
 import "../styles/globals.css";
 import { useRouter } from "next/router";
 import { cairoFont, notoFont } from "utils/fonts";
-
+import {Toaster} from 'react-hot-toast'
 
 const MyApp: AppType<{
   messages: AbstractIntlMessages;
@@ -25,6 +25,7 @@ const MyApp: AppType<{
     <SessionContextProvider supabaseClient={supaClient}>
       <NextIntlProvider messages={pageProps.messages}>
         <div className={`${cairoFont.variable} ${notoFont.variable} ltr:font-noto rtl:font-cairo`}>
+          <Toaster position='top-center' />
           <Component {...pageProps} />
         </div>
       </NextIntlProvider>
