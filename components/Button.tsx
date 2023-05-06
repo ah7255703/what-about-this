@@ -5,11 +5,13 @@ import { filterObject } from "utils/filter-object";
 import cn from "utils/cn";
 
 const ButtonVariants = cva(
-  "leading-snug font-medium relative whitespace-nowrap h-fit w-fit active:scale-[0.98] active:bg-opacity-90 transition-all",
+  "px-2 py-1 rounded-md leading-snug font-medium relative whitespace-nowrap h-fit w-fit active:scale-[0.98] active:bg-opacity-90 transition-all",
   {
     variants: {
       intent: {
-        primary: "bg-slate-700 text-white/90 px-2 py-1 rounded-md",
+        primary: "bg-slate-700 text-white/90",
+        danger: "bg-red-transparent text-red-500 hover:text-red-600 border-[0.5px] border-red-500",
+        outline:"bg-transparent text-slate-700 border-[0.5px] border-slate-500 shadow shadow-inner"
       },
       size: {
         sm: "text-sm",
@@ -23,6 +25,7 @@ const ButtonVariants = cva(
     },
     defaultVariants: {
       size: "lg",
+      intent: "primary",
     },
   }
 );
@@ -44,9 +47,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         className={cn(
           ButtonVariants(Variant),
           className,
-          loading && [
-            "animate-pulse",
-          ]
+          loading && ["animate-pulse"]
         )}
       />
     );

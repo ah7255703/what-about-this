@@ -31,7 +31,7 @@ const Input = forwardRef<
     const _id = useId();
 
     return (
-      <div className={cn("relative mb-3", className)}>
+      <div className={cn("relative", className)}>
         {label && (
           <label
             htmlFor={_id}
@@ -51,7 +51,7 @@ const Input = forwardRef<
             className={cn(
               "peer block min-h-[auto] w-full rounded-lg outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-red-950 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0",
               "bg-transparent border-[0.5px] border-slate-300",
-              "px-2 py-3 leading-snug text-sm",
+              "p-2 leading-snug text-sm",
               "focus:border-slate-400",
               inputClassName
             )}
