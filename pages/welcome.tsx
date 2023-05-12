@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import { type ISlideConfig, SlideParallaxType } from "react-page-slides";
 import dynamic from "next/dynamic";
 import Button from "components/Button";
@@ -419,14 +419,24 @@ const MainPage = () => {
     />
   );
 };
-import { type GetServerSidePropsContext } from "next";
+import {
+  type GetServerSidePropsContext,
+  GetServerSidePropsResult,
+} from "next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps(
+  ctx: GetServerSidePropsContext
+): Promise<GetServerSidePropsResult<unknown>> {
   const { auth } = createServerSupabaseClient(ctx);
   const session = await auth.getSession();
-  if (session) {
-    console.log(session.data.session?.user);
+  if (session.data.session?.user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
   }
 
   return {

@@ -1,6 +1,6 @@
 /** @type {import("next").NextConfig} */
 export default {
-  reactStrictMode: true,
+  reactStrictMode: false,
   i18n: {
     locales: ["en", "ar"],
     defaultLocale: "en",

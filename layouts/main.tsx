@@ -1,6 +1,12 @@
 import NavLink from "components/NavLink";
-import React, { useState, type HTMLAttributes } from "react";
-import { BiHome, BiNotification, BiSearch, BiSupport, BiUser } from "react-icons/bi";
+import React, { type HTMLAttributes } from "react";
+import {
+  BiHome,
+  BiNotification,
+  BiSearch,
+  BiSupport,
+  BiUser,
+} from "react-icons/bi";
 import WAvatar from "components/Avatar";
 import {
   DropdownMenu,
@@ -16,9 +22,9 @@ import {
   DropdownMenuTrigger,
 } from "components/DropDown";
 import { BiLogOut } from "react-icons/bi";
-import { FaLanguage, FaThemeco } from "react-icons/fa";
+import { useUser } from "@supabase/auth-helpers-react";
+
 function Header() {
-  const [checked, setChecked] = useState();
   return (
     <header className="w-full h-fit py-2 px-4 flex items-center justify-between border-b-2 border-slate-100 bg-white">
       <div className="group">
@@ -48,7 +54,7 @@ function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[300px] mt-3.5">
               <DropdownMenuGroup>
-              <DropdownMenuItem className="gap-2 text-lg">
+                <DropdownMenuItem className="gap-2 text-lg">
                   <BiSupport />
                   <span>support</span>
                 </DropdownMenuItem>
@@ -69,6 +75,8 @@ function Header() {
 export default function MainLayout({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
+  const user = useUser();
+
   return (
     <div className="w-screen h-screen overflow-hidden flex flex-col items-start bg-slate-50">
       <Header />

@@ -7,7 +7,7 @@ export default function Document_({ locale, __NEXT_DATA__ }: DocumentProps) {
       lang={locale || __NEXT_DATA__.defaultLocale}
     >
       <Head />
-      <body>
+      <body className="w-full h-screen">
         <Main />
         <NextScript />
       </body>

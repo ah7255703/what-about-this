@@ -39,7 +39,7 @@ export default function PollEditorLayout({
   const link = `/poll/${query.pid}`;
   return (
     <MainLayout>
-      <div className="container max-w-screen-lg p-4">
+      <div className="container max-w-screen-lg p-4 overflow-auto max-h-full">
         <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Input
