@@ -2,17 +2,22 @@ import React, { InputHTMLAttributes, ReactNode, useId } from "react";
 import { forwardRef } from "react";
 import { FaExclamation } from "react-icons/fa";
 import cn from "utils/cn";
+
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "id" | "ref"> {
+  labelClassName?: string;
+  inputClassName?: string;
+  label?: string;
+  error?: string;
+  variant?: "filled" | "";
+  isize?:"lg"|"xl"
+  rightIcon?: ReactNode;
+  leftIcon?: ReactNode;
+}
+
+
 const Input = forwardRef<
   HTMLInputElement,
-  Omit<InputHTMLAttributes<HTMLInputElement>, "id" | "ref"> & {
-    labelClassName?: string;
-    inputClassName?: string;
-    label?: string;
-    error?: string;
-    variant?: "filled" | "";
-    rightIcon?: ReactNode;
-    leftIcon?: ReactNode;
-  }
+  InputProps
 >(
   (
     {
@@ -24,6 +29,7 @@ const Input = forwardRef<
       className,
       labelClassName,
       label,
+      isize,
       ...props
     },
     _ref
@@ -53,6 +59,7 @@ const Input = forwardRef<
               "bg-transparent border-[0.5px] border-slate-300",
               "p-2 leading-snug text-sm",
               "focus:border-slate-400",
+              [isize === "lg" && "p-2.5", isize === "xl" && "p-3"],
               inputClassName
             )}
             id={_id}

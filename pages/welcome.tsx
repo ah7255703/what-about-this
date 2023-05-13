@@ -72,13 +72,13 @@ function Hero() {
         </div>
         <div className="flex items-center justify-start gap-3 mt-3">
           <Link
-            className="text-xl font-semibold px-4 py-1 flex items-center justify-center gap-1 bg-black rounded-lg w-fit text-white"
+            className="text-xl font-semibold px-6 py-2 flex items-center justify-center gap-1 bg-black rounded-lg w-fit text-white"
             href={"https://github.com/ah7255703"}
           >
             Github
             <DiGithub size={27} />
           </Link>
-          <Button intent={"primary"} className="px-6">
+          <Button intent={"primary"} className="px-6 py-2">
             Join Now
           </Button>
         </div>
@@ -129,11 +129,13 @@ function LoginForm() {
           required
           aria-required
           {...register("email")}
+          isize='xl'
           type="email"
           error={errors.email?.message}
-        />
+          />
         <Input
           label="password"
+          isize='xl'
           required
           aria-required
           {...register("password")}
@@ -190,17 +192,21 @@ function RegisterForm() {
           error={errors.name?.message}
           {...register("name")}
           type="text"
+          isize='xl'
+
         />
         <Input
           label="Email"
           error={errors.email?.message}
           {...register("email")}
+          isize='xl'
           type="email"
         />
         <Input
           label="password"
           error={errors.password?.message}
           {...register("password")}
+          isize='xl'
           type="password"
         />
         <Button

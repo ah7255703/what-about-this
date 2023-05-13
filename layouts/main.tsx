@@ -10,19 +10,13 @@ import {
 import WAvatar from "components/Avatar";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "components/DropDown";
 import { BiLogOut } from "react-icons/bi";
-import { useUser } from "@supabase/auth-helpers-react";
 
 function Header() {
   return (
@@ -73,17 +67,14 @@ function Header() {
 }
 
 export default function MainLayout({
+  children,
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  const user = useUser();
-
   return (
     <div className="w-screen h-screen overflow-hidden flex flex-col items-start bg-slate-50">
       <Header />
       <main className="flex-1 w-full overflow-hidden">
-        <div className="h-full max-h-full overflow-hidden">
-          {props.children}
-        </div>
+        <div className="h-full max-h-full overflow-hidden">{children}</div>
       </main>
     </div>
   );

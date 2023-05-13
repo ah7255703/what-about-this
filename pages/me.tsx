@@ -4,13 +4,16 @@ import Button from "components/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "components/Popover";
 import MainLayout from "layouts/main";
 import { BiPencil } from "react-icons/bi";
+import Image from "next/image";
+import PollListView from "components/PollListView";
 
 export default function Me() {
   return (
     <MainLayout>
       <div className="max-h-full w-full overflow-auto pb-10">
         <section className="w-full h-full px-5 py-2">
-          <div className="cover relative sm:max-w-screen-lg aspect-video h-auto max-h-[300px] mt-2 rounded-xl container bg-slate-600 w-full mx-auto">
+          <div className="cover relative sm:max-w-screen-lg aspect-video overflow-hidden h-auto max-h-[300px] mt-2 rounded-xl container bg-slate-600 w-full mx-auto">
+            <Image src={"https://picsum.photos/700/300"} fill alt="" />
             <div className="absolute top-2 left-2 overflow-hidden p-2">
               <Popover>
                 <PopoverTrigger>
@@ -37,15 +40,20 @@ export default function Me() {
               </div>
             </div>
             <div className="mt-auto mb-2">
-              <Button intent={"primary"}>
-                Follow
-              </Button>
+              <Button intent={"primary"}>Follow</Button>
             </div>
           </div>
         </section>
-        <section className="flex gap-3 sm:flex-row flex-col-reverse [&>*]:rounded-lg [&>*]:bg-white px-5 mt-10 items-start w-full container sm:max-w-screen-lg">
-          <main className="sm:flex-1 w-full">fuckem</main>
-          <aside className="w-full sm:max-w-xs p-4 pb-10">
+        <section className="flex gap-3 sm:flex-row flex-col-reverse px-5 mt-10 items-start w-full container sm:max-w-screen-lg">
+          <main className="sm:flex-1 w-full">
+            <div className="sm:max-w-[500px] rounded-lg space-y-5 w-full">
+              <PollListView />
+              <PollListView />
+              <PollListView />
+              <PollListView />
+            </div>
+          </main>
+          <aside className="w-full sm:max-w-md p-4 pb-10 bg-white rounded-lg">
             <h2 className="text-xl font-medium text-slate-600">About me</h2>
             <p
               className="mt-1 mx-2 text-sm font-normal text-slate-500 leading-snug text-start"
@@ -57,7 +65,7 @@ export default function Me() {
             <div className="block h-px w-full bg-slate-200 my-4"></div>
             <div className="w-full flex flex-wrap items-start gap-2">
               <h2 className="text-xl font-medium text-slate-600 w-full ">
-                intersets
+                interests
               </h2>
               <div className="px-3 py-1 border rounded-full text-sm hover:text-slate-600 cursor-pointer">
                 football
