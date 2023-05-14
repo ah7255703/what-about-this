@@ -22,6 +22,9 @@ const ButtonVariants = cva(
       fluid: {
         true: "w-full",
       },
+      circle:{
+        true:"rounded-full"
+      }
     },
     defaultVariants: {
       size: "lg",
@@ -37,7 +40,7 @@ type Props = PropsWithoutRef<ButtonHTMLAttributes<HTMLButtonElement>> &
 
 const Button = forwardRef<HTMLButtonElement, Props>(
   ({ className, loading, ...props }, _ref) => {
-    const Variant = filterObject(props, ["intent", "fluid", "size"]);
+    const Variant = filterObject(props, ["intent", "fluid", "size","circle"]);
 
     return (
       <button

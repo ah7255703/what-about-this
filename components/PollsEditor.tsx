@@ -1,12 +1,33 @@
 import { BiImageAdd, BiPlus, BiTrash } from "react-icons/bi";
 import Button from "./Button";
 import Input from "./Input";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import React from "react";
 import { produce } from "immer";
-import { v4 as uuid4 } from "uuid";
-import Image from "next/image";
 import cn from "utils/cn";
+import ViewableImage from "./ViewableImage";
+import { FaExpand } from "react-icons/fa";
+
+function uuid4() {
+  const randomString =
+    Math.random().toString(36).substr(2, 10) +
+    Math.random().toString(36).substring(2, 10) +
+    Math.random().toString(36).substring(2, 10) +
+    Math.random().toString(36).substring(2, 10);
+
+  // Create a pattern for the UUID
+  const pattern = /[xy]/g;
+  const replaceFn = function (c: string) {
+    const r = (Math.random() * 16) | 0,
+      v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  };
+
+  // Replace the pattern with random values
+  const uuid = randomString.replace(pattern, replaceFn);
+
+  return uuid;
+}
 
 type StateType = {
   editor: {
@@ -74,13 +95,35 @@ function reducer(state: StateType, action: actionType): StateType {
   });
 }
 
-
-
-
-function ImageCollapseExpand(){}
-
-
-
+function Image({ imageUrl }: { imageUrl: string }) {
+  const [collapsed, setcollapsed] = useState(false);
+  return (
+    <div className="w-full relative">
+      <div className="absolute w-full left-2 bottom-0 z-20">
+        <button
+          className={cn("text-xl transition-all", collapsed && "rotate-45")}
+          onClick={() => setcollapsed(!collapsed)}
+        >
+          <FaExpand />
+        </button>
+      </div>
+      <div
+        className={cn(
+          "w-full overflow-hidden transition duration-100 ease-in",
+          collapsed && "h-10"
+        )}
+      >
+        <div
+          className={cn(
+            "relative w-11/12 mx-auto h-auto aspect-video rounded-lg mt-2 overflow-hidden object-cover"
+          )}
+        >
+          <ViewableImage fill src={imageUrl} alt="Option Image" />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function PollsOptionsEditor() {
   const [state, dispatch] = useReducer(reducer, {
@@ -103,15 +146,23 @@ export default function PollsOptionsEditor() {
   function handleDelete(id: string) {
     dispatch({ type: "DELETE_OPTION", payload: { id: id } });
   }
+  function imageUploadFn(file: File, setError: (error: string) => void) {
+    return "";
+  }
+  function setError(error: string) {
+    dispatch({
+      type: "SET_ERROR",
+      payload: {
+        error,
+      },
+    });
+  }
 
   function handleImageUpload(id: string, file: File) {
-    // Simulate image upload and set the image URL
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const imgUrl = reader.result as string;
-      dispatch({ type: "ADD_IMAGE", payload: { id, imgUrl } });
-    };
-    reader.readAsDataURL(file);
+    dispatch({
+      type: "ADD_IMAGE",
+      payload: { id, imgUrl: imageUploadFn(file, setError) },
+    });
   }
   return (
     <>
@@ -175,19 +226,7 @@ export default function PollsOptionsEditor() {
                   </Button>
                 </div>
               </div>
-              {imageUrl && (
-                <div className="w-full">
-                  <div
-                    className={cn(
-                      "relative w-11/12 mx-auto h-auto aspect-video rounded-lg mt-2 overflow-hidden object-cover"
-                    )}
-                  >
-                    <Image fill src={imageUrl} alt="Option Image" />
-                  </div>
-                  <div>
-                  </div>
-                </div>
-              )}
+              {imageUrl && <Image imageUrl={imageUrl} />}
             </div>
           );
         })}

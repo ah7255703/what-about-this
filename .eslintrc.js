@@ -25,5 +25,6 @@ module.exports = {
   rules: {
     "react/prop-types": 0,
     "react/no-unescaped-entities": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
   },
 };

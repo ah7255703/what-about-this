@@ -7,6 +7,7 @@ export function filterObject<T extends object, U extends keyof T>(
     for (const key of keyList) {
         if (key in obj) {
             filteredObject[key] = obj[key];
+            delete obj[key];
         }
     }
     return filteredObject;

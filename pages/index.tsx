@@ -25,6 +25,10 @@ const Home: NextPage = () => {
               />
               <Button className="flex-1 p-3 rounded-full text-center flex items-center justify-center bg-slate-100 text-slate-800" size='xl' ><BiPlusCircle size={27}/></Button>
               </div>
+
+              </div>
+              <div className="w-full rounded-full h-4 block bg-slate-200">
+
             </div>
             <PollListView />
             <PollListView />
