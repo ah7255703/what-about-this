@@ -22,6 +22,7 @@ const Home: NextPage = () => {
                 fallback="AH"
                 size="md"
                 src="https://picsum.photos/700/300"
+                className="border border-salte-600"
               />
               <Button className="flex-1 p-3 rounded-full text-center flex items-center justify-center bg-slate-100 text-slate-800" size='xl' ><BiPlusCircle size={27}/></Button>
               </div>

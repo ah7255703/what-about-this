@@ -9,7 +9,7 @@ const ButtonVariants = cva(
   {
     variants: {
       intent: {
-        primary: "bg-slate-700 text-white/90",
+        primary: "bg-slate-700 text-white/90 disabled:bg-slate-200",
         danger: "bg-red-transparent text-red-500 hover:text-red-600 border-[0.5px] border-red-500",
         outline:"bg-transparent text-slate-700 border-[0.5px] border-slate-500 shadow shadow-inner"
       },

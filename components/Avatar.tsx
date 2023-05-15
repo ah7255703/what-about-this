@@ -8,7 +8,7 @@ const WAvatar = ({
   fallback,
   className,
 }: {
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg"| "xl";
   src?: string;
   fallback: ReactNode;
   className?: string | undefined;
@@ -18,6 +18,7 @@ const WAvatar = ({
       "bg-blackA3 inline-flex h-[35px] w-[35px] aspect-square select-none items-center justify-center overflow-hidden rounded-full align-middle",
       size === "md" && "h-[45px] w-[45px]",
       size === "lg" && "h-[60px] w-[60px]",
+      size === "xl" && "h-[120px] w-[120px]",
       className
     )}
   >

@@ -14,7 +14,7 @@ const NavLink = forwardRef<
 >(({ className, icon, label, ...props }, _ref) => {
   const ref = useRef<HTMLAnchorElement | null>(null);
 
-  const { pathname, asPath, basePath } = useRouter();
+  const { pathname} = useRouter();
   const active = pathname === props.href;
   return (
     <Link

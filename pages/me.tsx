@@ -44,16 +44,16 @@ export default function Me() {
             </div>
           </div>
         </section>
-        <section className="flex gap-3 sm:flex-row flex-col-reverse px-5 mt-10 items-start w-full container sm:max-w-screen-lg">
+        <section className="flex gap-3 lg:flex-row flex-col-reverse px-5 mt-10 items-start w-full container sm:max-w-screen-lg">
           <main className="sm:flex-1 w-full">
-            <div className="sm:max-w-[500px] rounded-lg space-y-5 w-full">
+            <div className="lg:max-w-[500px] rounded-lg space-y-5 w-full">
               <PollListView />
               <PollListView />
               <PollListView />
               <PollListView />
             </div>
           </main>
-          <aside className="w-full sm:max-w-md p-4 pb-10 bg-white rounded-lg">
+          <aside className="w-full lg:max-w-md p-4 pb-10 bg-white rounded-lg">
             <h2 className="text-xl font-medium text-slate-600">About me</h2>
             <p
               className="mt-1 mx-2 text-sm font-normal text-slate-500 leading-snug text-start"

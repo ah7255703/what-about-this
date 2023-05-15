@@ -8,7 +8,6 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "id" | 
   inputClassName?: string;
   label?: string;
   error?: string;
-  variant?: "filled" | "";
   isize?:"lg"|"xl"
   rightIcon?: ReactNode;
   leftIcon?: ReactNode;
@@ -22,7 +21,6 @@ const Input = forwardRef<
   (
     {
       inputClassName,
-      variant,
       rightIcon,
       leftIcon,
       error,
@@ -37,7 +35,7 @@ const Input = forwardRef<
     const _id = useId();
 
     return (
-      <div className={cn("relative", className)}>
+      <div className={cn("relative w-full", className)}>
         {label && (
           <label
             htmlFor={_id}
@@ -55,7 +53,7 @@ const Input = forwardRef<
           <input
             {...props}
             className={cn(
-              "peer block min-h-[auto] w-full rounded-lg outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-red-950 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0",
+              "peer block min-h-[auto] w-full rounded-lg outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-red-950",
               "bg-transparent border-[0.5px] border-slate-300",
               "p-2 leading-snug text-sm",
               "focus:border-slate-400",
