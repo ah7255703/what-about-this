@@ -1,4 +1,4 @@
-import NavLink from "components/NavLink";
+import NavLink from "@ui/components/NavLink";
 import React, { useState, type HTMLAttributes } from "react";
 import {
   BiHome,
@@ -8,7 +8,7 @@ import {
   BiUser,
   BiEdit,
 } from "react-icons/bi";
-import WAvatar from "components/Avatar";
+import WAvatar from "@ui/components/Avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +16,11 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "components/DropDown";
+} from "@ui/components/DropDown";
 import { BiLogOut } from "react-icons/bi";
-import Button from "components/Button";
-import Portal from "components/Portal";
-import Input from "components/Input";
+import Button from "@ui/components/Button";
+import Portal from "@ui/components/Portal";
+import Input from "@ui/components/Input";
 import Link from "next/link";
 import { GiBigGear } from "react-icons/gi";
 

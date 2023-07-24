@@ -1,13 +1,13 @@
 import React, { ReactNode } from "react";
 import { type ISlideConfig, SlideParallaxType } from "react-page-slides";
 import dynamic from "next/dynamic";
-import Button from "components/Button";
+import Button from "@ui/components/Button";
 import { GiRocket } from "react-icons/gi";
 import { FaBalanceScale } from "react-icons/fa";
 import { DiOpensource, DiGithub } from "react-icons/di";
 import Link from "next/link";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "components/Tabs";
-import Input from "components/Input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/components/Tabs";
+import Input from "@ui/components/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, registerSchema } from "utils/schemas";

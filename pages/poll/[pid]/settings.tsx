@@ -1,4 +1,4 @@
-import PollEditorLayout from "layouts/pollEditor";
+import PollEditorLayout from "@ui/layouts/pollEditor";
 import React from "react";
 
 export default function DetailPollPageSettings() {

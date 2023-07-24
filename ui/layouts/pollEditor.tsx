@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef, ReactNode, forwardRef } from "react";
 import MainLayout from "./main";
-import Input from "components/Input";
-import Button from "components/Button";
+import Input from "@ui/components/Input";
+import Button from "@ui/components/Button";
 import { BiImageAdd } from "react-icons/bi";
 import { useRouter } from "next/router";
 import Link from "next/link";

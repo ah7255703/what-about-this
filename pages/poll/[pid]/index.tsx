@@ -1,5 +1,5 @@
-import PollsOptionsEditor from "components/PollsEditor";
-import PollEditorLayout from "layouts/pollEditor";
+import PollsOptionsEditor from "@ui/components/PollsEditor";
+import PollEditorLayout from "@ui/layouts/pollEditor";
 import React from "react";
 
 export default function DetailPollPageIndex() {

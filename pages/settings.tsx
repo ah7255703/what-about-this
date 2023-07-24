@@ -1,15 +1,15 @@
-import MainLayout from "layouts/main";
+import MainLayout from "@ui/layouts/main";
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "db";
-import { useSupaClient } from "hooks/useSupaClient";
+import { useSupaClient } from "@ui/hooks/useSupaClient";
 import Image from "next/image";
-import WAvatar from "components/Avatar";
-import Button from "components/Button";
+import WAvatar from "@ui/components/Avatar";
+import Button from "@ui/components/Button";
 import { BiPencil, BiX } from "react-icons/bi";
-import { TabsTrigger, Tabs, TabsContent, TabsList } from "components/Tabs";
-import Input from "components/Input";
+import { TabsTrigger, Tabs, TabsContent, TabsList } from "@ui/components/Tabs";
+import Input from "@ui/components/Input";
 
 // export async function getServerSideProps(
 //   ctx: GetServerSidePropsContext
